@@ -1,12 +1,7 @@
 #!/usr/bin/python
 
 from tamagotchi import Tamagotchi
-from util import Util
 import names
-
-decayaspeed = 1
-ticks = 50
-show_pct = True
 
 class Mayorgotchi:
     mygotchis = []
@@ -21,7 +16,7 @@ class Mayorgotchi:
             if n.is_dead():
                 self.mygotchis.remove(n)
 
-    def give_status(self):
+    def give_status(self,show_pct):
         result = 'I am Mayorgotchi ' + self.name + '. These are the Tamagotchis in my Village:\n\n'
         for n in self.mygotchis:
             if show_pct:
@@ -34,27 +29,3 @@ class Mayorgotchi:
         for n in self.mygotchis:
             n.step()
         self.remove_corpses()
-
-
-# Temoprarty Test Section
-list = []
-for n in range(0,10):
-    list.append(Util().make_Tamagotchi())
-
-mayor = Mayorgotchi(list)
-
-print mayor.give_status()
-
-for n in range (0, ticks):
-    mayor.step()
-
-print '----------------------After '+str(ticks)+' ticks------------------------------\n'
-
-print mayor.give_status()
-
-for n in range (0, ticks):
-    mayor.step()
-
-print '----------------------After another '+str(ticks)+' ticks------------------------------\n'
-
-print mayor.give_status()
