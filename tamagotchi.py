@@ -3,10 +3,10 @@
 class Tamagotchi:
     status      = ''
     name        = ''
-    hunger      = 0
-    happiness   = 0
-    hygiene     = 0
-    sleep       = 0
+    hunger      = []
+    happiness   = []
+    hygiene     = []
+    sleep       = []
     dead        = False
     decayspeed  = 0
     potential   = 0
@@ -38,78 +38,57 @@ class Tamagotchi:
         self.status = 'Working'
         tamagotchi.status = 'Bathing'
 
-    def update_sleep(self):
-        if self.status is 'Sleeping':
-            if self.sleep[0] >= self.sleep[1]:
+    def update_stat(self,stat,recovering):
+        if recovering:
+            if stat[0] >= stat[1]:
                 self.status = 'Idle'
-            if self.sleep[0] >= self.sleep[1] - self.recovery:
-                self.sleep[0] = self.sleep[1]
+            if stat[0] >= stat[1] - self.recovery:
+                stat[0] = stat[1]
+                self.status = 'Idle'
             else:
-                self.sleep[0] += self.recovery
+                stat[0] += self.recovery
         else:
-            if self.sleep[0] <= 0 + self.decayspeed:
-                self.sleep[0] = 0
-                self.status = 'Sleeping'
+            if stat[0] <= 0 + self.decayspeed:
+                stat[0] = 0
             else:
-                self.sleep[0] -= self.decayspeed
+                stat[0] -= self.decayspeed
 
-    def update_hunger(self):
-        if self.status is 'Eating':
-            if self.hunger[0] >= self.hunger[1]:
-                self.status = 'Idle'
-            if self.hunger[0] >= self.hunger[1] - self.recovery:
-                self.hunger[0] = self.hunger[1]
-            else:
-                self.hunger[0] += self.recovery
-        else:
-            if self.hunger[0] <= 0 + self.decayspeed:
-                self.hunger[0] = 0
+    def update_status(self):
+        if not self.dead:
+            if self.hunger[0] <= 0:
                 self.status = 'Dead'
                 self.dead = True
-            else:
-                self.hunger[0] -= self.decayspeed
-
-    def update_hygiene(self):
-        if self.status is 'Bathing':
-            if self.hygiene[0] >= self.hygiene[1]:
-                self.status = 'Idle'
-            if self.hygiene[0] >= self.hygiene[1] - self.recovery:
-                self.hygiene[0] = self.hygiene[1]
-            else:
-                self.hygiene[0] += self.recovery
-        else:
-            if self.hygiene[0] <= 0 + self.decayspeed:
-                self.hygiene[0] = 0
-            else:
-                self.hygiene[0] -= self.decayspeed
-
-    def update_happiness(self):
-        if self.status is 'Playing':
-            if self.happiness[0] >= self.happiness[1]:
-                self.status = 'Idle'
-            if self.happiness[0] >= self.happiness[1] -self.recovery:
-                self.happiness[0] = self.happiness[1]
-            else:
-                self.happiness[0] += self.recovery
-        else:
-            if self.happiness[0] <= 0 + self.decayspeed:
-                self.happiness[0] = 0
-            else:
-                self.happiness[0] -= self.decayspeed
-
-    def step(self):
-        if not self.dead:
+            if self.sleep[0] <= 0:
+                self.status = 'Sleeping'
             if self.status is 'Working':
                 if self.power <= 0:
                     self.status = 'Idle'
                     self.power = self.potential
                 else:
                     self.power -= 1
+
+    def step(self):
+            self.update_status()
+
+            if self.status is 'Eating':
+                self.update_stat(self.hunger,True)
             else:
-                self.update_hunger()
-                self.update_sleep()
-                self.update_hygiene()
-                self.update_happiness()
+                self.update_stat(self.hunger,False)
+
+            if self.status is 'Sleeping':
+                self.update_stat(self.sleep,True)
+            else:
+                self.update_stat(self.sleep,False)
+
+            if self.status is 'Bathing':
+                self.update_stat(self.hygiene,True)
+            else:
+                self.update_stat(self.hygiene,False)
+
+            if self.status is 'Playing':
+                self.update_stat(self.happiness,True)
+            else:
+                self.update_stat(self.happiness,False)
 
     def is_dead(self):
         if self.dead:

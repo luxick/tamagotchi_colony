@@ -37,5 +37,5 @@ while True:
     if key == ord('q'):
         break
     elif key < 0:
-        time.sleep(0.1)
+        time.sleep(ticklenght)
 curses.endwin()

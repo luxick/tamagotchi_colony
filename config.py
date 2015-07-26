@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
+# The lenght of one game cycle in milliseconds
+ticklenght = 0.1
 # The amount of points a Tamagotchi loses per tick
 decayaspeed = 1
 # Controls if Tamagotchi stats are shown in absolute vlaues or precentage (Possible values: True/False)
-show_pct = False
+show_pct = True
 # When new Tamagotchis are created their stats will be be created randomly between these.
 min_stat = 100
 max_stat = 200
