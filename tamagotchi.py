@@ -39,28 +39,33 @@ class Tamagotchi:
         tamagotchi.status = 'Bathing'
 
     def update_sleep(self):
-        if self.sleep[0] <= 0:
-            self.status = 'Sleeping'
         if self.status is 'Sleeping':
-            if self.sleep[0] <= self.sleep[1] - self.decayspeed:
-                self.sleep[0] += 5
             if self.sleep[0] >= self.sleep[1]:
                 self.status = 'Idle'
+            if self.sleep[0] >= self.sleep[1] - self.recovery:
+                self.sleep[0] = self.sleep[1]
+            else:
+                self.sleep[0] += self.recovery
         else:
-            self.sleep[0] -= self.decayspeed
+            if self.sleep[0] <= 0 + self.decayspeed:
+                self.sleep[0] = 0
+                self.status = 'Sleeping'
+            else:
+                self.sleep[0] -= self.decayspeed
 
     def update_hunger(self):
         if self.status is 'Eating':
-            if self.hunger[0] <= self.hunger[1]:
-                self.hunger[0] += 30
-            else:
+            if self.hunger[0] >= self.hunger[1]:
                 self.status = 'Idle'
+            if self.hunger[0] >= self.hunger[1] - self.recovery:
+                self.hunger[0] = self.hunger[1]
+            else:
+                self.hunger[0] += self.recovery
         else:
-            # The Tamagotchi is starving
-            if self.hunger[0] < self.decayspeed:
+            if self.hunger[0] <= 0 + self.decayspeed:
                 self.hunger[0] = 0
-                self.dead = True
                 self.status = 'Dead'
+                self.dead = True
             else:
                 self.hunger[0] -= self.decayspeed
 
@@ -73,7 +78,7 @@ class Tamagotchi:
             else:
                 self.hygiene[0] += self.recovery
         else:
-            if self.hygiene[0] <= 0:
+            if self.hygiene[0] <= 0 + self.decayspeed:
                 self.hygiene[0] = 0
             else:
                 self.hygiene[0] -= self.decayspeed
@@ -87,7 +92,7 @@ class Tamagotchi:
             else:
                 self.happiness[0] += self.recovery
         else:
-            if self.happiness[0] <= 0:
+            if self.happiness[0] <= 0 + self.decayspeed:
                 self.happiness[0] = 0
             else:
                 self.happiness[0] -= self.decayspeed

@@ -20,7 +20,7 @@ class Mayorgotchi:
                 self.mygotchis.remove(n)
 
     def give_status(self,show_pct):
-        result = 'I am Mayorgotchi ' + self.name + '.\nIn my Village '+str(self.graveyard)+' Tamagotchis died so far.\nThese are the Tamagotchis living in my Village:\n\n'
+        result = 'I am Mayorgotchi ' + self.name + '.\nIn my Village '+str(self.graveyard)+' Tamagotchis died so far.\nThese are the '+str(len(self.mygotchis))+' Tamagotchis living in my Village:\n\n'
         for n in self.mygotchis:
             if show_pct:
                 result += n.status_pct()
@@ -33,7 +33,7 @@ class Mayorgotchi:
         for n in self.mygotchis:
             if n.status is 'Idle':
                 freegotchis.append(n)
-        if freegotchis is not None:
+        if len(freegotchis) > 0:
             return freegotchis[random.randrange(0,len(freegotchis),1)]
         else:
             return None
