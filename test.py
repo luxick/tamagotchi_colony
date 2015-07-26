@@ -2,34 +2,27 @@
 
 from mayorgotchi import Mayorgotchi
 from util import Util
+import time
 
 
 # Temporary test section
 
 # Variable Definition
 decayaspeed = 1
-ticks = 50
+ticks = 200000
 show_pct = True
 
 list = []
 
-for n in range(0,10):
+for n in range(0,50):
     list.append(Util().make_Tamagotchi())
 
 mayor = Mayorgotchi(list)
-
-print mayor.give_status(show_pct)
-
 for n in range (0, ticks):
     mayor.step()
+    print(chr(27) + "[2J")
+    print '----------------------After '+str(n)+' ticks------------------------------\n'
 
-print '----------------------After '+str(ticks)+' ticks------------------------------\n'
+    print mayor.give_status(show_pct)
 
-print mayor.give_status(show_pct)
-
-for n in range (0, ticks):
-    mayor.step()
-
-print '----------------------After another '+str(ticks)+' ticks------------------------------\n'
-
-print mayor.give_status(show_pct)
+    time.sleep(0.5)

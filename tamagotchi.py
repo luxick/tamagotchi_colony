@@ -9,8 +9,12 @@ class Tamagotchi:
     sleep       = 0
     dead        = False
     decayspeed  = 0
+    potential   = 0
+    power       = 0
 
-    def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed):
+    recovery    = 10
+
+    def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed, potential):
         self.name       = name
         self.hunger     = [hunger, hunger]
         self.happiness  = [happiness, happiness]
@@ -19,52 +23,79 @@ class Tamagotchi:
         self.dead       = False
         self.status     = 'Idle'
         self.decayspeed = decayspeed
+        self.potential  = potential
+        self.power      = potential
+
+    def set_status(self, status):
+        self.status = status
 
     def feed_other(self, tamagotchi):
-        tamagotchi.hunger += 5
+        self.status = 'Working'
+        tamagotchi.status = 'Eating'
 
     def play_with(self, tamagotchi):
         tamagotchi.happiness += 5
         self.happiness += 5
 
     def wash_other(self,tamagotchi):
-        tamagotchi.hygiene += 5
+        self.status = 'Working'
+        tamagotchi.status = 'Bathing'
 
-    def sleep(self):
-        self.sleep += 5
+    def update_sleep(self):
+        if self.sleep[0] <= 0:
+            self.status = 'Sleeping'
+        if self.status is 'Sleeping':
+            if self.sleep[0] <= self.sleep[1] - self.decayspeed:
+                self.sleep[0] += 5
+            if self.sleep[0] >= self.sleep[1]:
+                self.status = 'Idle'
+        else:
+            self.sleep[0] -= self.decayspeed
 
-    def decay(self, amount):
-        if not self.dead:
-            if self.hunger[0] < amount:
+    def update_hunger(self):
+        if self.status is 'Eating':
+            if self.hunger[0] <= self.hunger[1]:
+                self.hunger[0] += 10
+            else:
+                self.status = 'Idle'
+        elif self.status is 'Idle':
+            # The Tamagotchi is starving
+            if self.hunger[0] < self.decayspeed:
                 self.hunger[0] = 0
                 self.dead = True
                 self.status = 'Dead'
             else:
-                self.hunger[0] -= amount
+                self.hunger[0] -= self.decayspeed
 
-            if self.happiness[0] < amount:
-                self.happiness[0] = 0
+    def update_hygiene(self):
+        if self.status is 'Bathing':
+            if self.hygiene[0] >= self.hygiene[1]:
+                self.status = 'Idle'
+            if self.hygiene[0] >= self.hygiene[1] - self.recovery:
+                self.hygiene[0] = self.hygiene[1]
             else:
-                self.happiness[0] -= amount
+                self.hygiene[0] += self.recovery
+        else:
+            self.hygiene[0] -= self.decayspeed
 
-            if self.hygiene[0] < amount:
-                self.hygiene[0] = 0
-            else:
-                self.hygiene[0] -= amount
-
-            if self.sleep[0] <= 0:
-                self.status = "Sleeping"
-
-            if self.status is 'Sleeping':
-                if self.sleep[0] <= self.sleep[1] - amount:
-                    self.sleep[0] += 5
-                if self.sleep[0] >= self.sleep[1]:
-                    self.status = 'Idle'
-            else:
-                self.sleep[0] -= amount
 
     def step(self):
-        self.decay(self.decayspeed)
+        if not self.dead:
+            if self.status is 'Working':
+                if self.power <= 0:
+                    self.status = 'Idle'
+                    self.power = self.potential
+                else:
+                    self.power -= 1
+            else:
+                if self.happiness[0] < self.decayspeed:
+                    self.happiness[0] = 0
+                else:
+                    self.happiness[0] -= self.decayspeed
+
+                self.update_hunger()
+                self.update_sleep()
+                self.update_hygiene()
 
     def is_dead(self):
         if self.dead:
