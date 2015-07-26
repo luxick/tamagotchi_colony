@@ -14,3 +14,6 @@ max_decay = 3
 # The value is choosen randomly between these two. Obviously a lower number is better.
 min_workpower = 1
 max_workpower = 3
+# This defines the bounds of how much a Tamagotchi can recover when eating/sleeping/playing etc.
+min_recovery = 10
+max_recovery = 20

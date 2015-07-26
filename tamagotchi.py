@@ -11,10 +11,9 @@ class Tamagotchi:
     decayspeed  = 0
     potential   = 0
     power       = 0
+    recovery    = 0
 
-    recovery    = 10
-
-    def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed, potential):
+    def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed, potential,recovery):
         self.name       = name
         self.hunger     = [hunger, hunger]
         self.happiness  = [happiness, happiness]
@@ -25,6 +24,7 @@ class Tamagotchi:
         self.decayspeed = decayspeed
         self.potential  = potential
         self.power      = potential
+        self.recovery   = recovery
 
     def feed_other(self, tamagotchi):
         self.status = 'Working'
