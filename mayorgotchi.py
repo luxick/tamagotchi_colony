@@ -7,6 +7,7 @@ import random
 class Mayorgotchi:
     mygotchis = []
     name = ''
+    graveyard = 0
 
     def __init__(self, list_of_tamagotchis):
         self.mygotchis = list_of_tamagotchis
@@ -15,10 +16,11 @@ class Mayorgotchi:
     def remove_corpses(self):
         for n in self.mygotchis:
             if n.is_dead():
+                self.graveyard += 1
                 self.mygotchis.remove(n)
 
     def give_status(self,show_pct):
-        result = 'I am Mayorgotchi ' + self.name + '. These are the Tamagotchis in my Village:\n\n'
+        result = 'I am Mayorgotchi ' + self.name + '.\nIn my Village '+str(self.graveyard)+' Tamagotchis died so far.\nThese are the Tamagotchis living in my Village:\n\n'
         for n in self.mygotchis:
             if show_pct:
                 result += n.status_pct()
@@ -52,6 +54,17 @@ class Mayorgotchi:
         else:
             return None
 
+    def get_unhappy(self):
+        unhappies = []
+        result = []
+        for n in self.mygotchis:
+            if n.happiness[0] <= 20:
+                unhappies.append(n)
+        if len(unhappies) > 0:
+            return unhappies[random.randrange(0,len(unhappies), 1)]
+        else:
+            return None
+
     def order_feed(self):
         hungry = self.get_hungry()
         if hungry is not None:
@@ -62,6 +75,11 @@ class Mayorgotchi:
         if dirty is not None:
             self.get_free().wash_other(dirty)
 
+    def order_play(self):
+        unhappy = self.get_unhappy()
+        if unhappy is not None:
+            self.get_free().play_with(unhappy)
+
 
     def step(self):
         for n in self.mygotchis:
@@ -69,3 +87,4 @@ class Mayorgotchi:
         self.remove_corpses()
         self.order_feed()
         self.order_wash()
+        self.order_play()

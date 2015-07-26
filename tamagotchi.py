@@ -26,16 +26,13 @@ class Tamagotchi:
         self.potential  = potential
         self.power      = potential
 
-    def set_status(self, status):
-        self.status = status
-
     def feed_other(self, tamagotchi):
         self.status = 'Working'
         tamagotchi.status = 'Eating'
 
     def play_with(self, tamagotchi):
-        tamagotchi.happiness += 5
-        self.happiness += 5
+        self.status = 'Working'
+        tamagotchi.status = 'Playing'
 
     def wash_other(self,tamagotchi):
         self.status = 'Working'
@@ -55,10 +52,10 @@ class Tamagotchi:
     def update_hunger(self):
         if self.status is 'Eating':
             if self.hunger[0] <= self.hunger[1]:
-                self.hunger[0] += 10
+                self.hunger[0] += 30
             else:
                 self.status = 'Idle'
-        elif self.status is 'Idle':
+        else:
             # The Tamagotchi is starving
             if self.hunger[0] < self.decayspeed:
                 self.hunger[0] = 0
@@ -76,8 +73,24 @@ class Tamagotchi:
             else:
                 self.hygiene[0] += self.recovery
         else:
-            self.hygiene[0] -= self.decayspeed
+            if self.hygiene[0] <= 0:
+                self.hygiene[0] = 0
+            else:
+                self.hygiene[0] -= self.decayspeed
 
+    def update_happiness(self):
+        if self.status is 'Playing':
+            if self.happiness[0] >= self.happiness[1]:
+                self.status = 'Idle'
+            if self.happiness[0] >= self.happiness[1] -self.recovery:
+                self.happiness[0] = self.happiness[1]
+            else:
+                self.happiness[0] += self.recovery
+        else:
+            if self.happiness[0] <= 0:
+                self.happiness[0] = 0
+            else:
+                self.happiness[0] -= self.decayspeed
 
     def step(self):
         if not self.dead:
@@ -88,14 +101,10 @@ class Tamagotchi:
                 else:
                     self.power -= 1
             else:
-                if self.happiness[0] < self.decayspeed:
-                    self.happiness[0] = 0
-                else:
-                    self.happiness[0] -= self.decayspeed
-
                 self.update_hunger()
                 self.update_sleep()
                 self.update_hygiene()
+                self.update_happiness()
 
     def is_dead(self):
         if self.dead:
