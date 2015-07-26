@@ -3,6 +3,7 @@
 from tamagotchi import Tamagotchi
 import names
 import random
+from config import *
 
 class Mayorgotchi:
     mygotchis = []
@@ -41,13 +42,13 @@ class Mayorgotchi:
     def get_hungry(self):
         for n in self.mygotchis:
             if n.status is 'Idle':
-                if n.hunger[0] <= 20:
+                if n.hunger[0] <= feeding_point:
                     return n
 
     def get_dirty(self):
         dirties = []
         for n in self.mygotchis:
-            if n.hygiene[0] <= 20:
+            if n.hygiene[0] <= washing_point:
                 dirties.append(n)
         if len(dirties) > 0:
             return dirties[random.randrange(0,len(dirties),1)]
@@ -58,7 +59,7 @@ class Mayorgotchi:
         unhappies = []
         result = []
         for n in self.mygotchis:
-            if n.happiness[0] <= 20:
+            if n.happiness[0] <= play_point:
                 unhappies.append(n)
         if len(unhappies) > 0:
             return unhappies[random.randrange(0,len(unhappies), 1)]

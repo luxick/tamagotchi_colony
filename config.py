@@ -2,8 +2,16 @@
 
 # The lenght of one game cycle in milliseconds
 ticklenght = 0.1
+# Number of Tamagotchis to be created at the start of the simulation
+startnr = 50
 # The amount of points a Tamagotchi loses per tick
 decayaspeed = 1
+# If the hunger stat falls below this level Tamagotchis can be fed
+feeding_point = 50
+# If the hygiene stat falls below this level Tamagotchis can be washed
+washing_point = 50
+# If the happiness stat falls below this level Tamagotchis can be played with
+play_point = 50
 # Controls if Tamagotchi stats are shown in absolute vlaues or precentage (Possible values: True/False)
 show_pct = True
 # When new Tamagotchis are created their stats will be be created randomly between these.

@@ -6,13 +6,11 @@ from config import *
 import time
 import curses
 
-
 # Temporary test section
 
 list = []
 ticks = 0
-
-for n in range(0,50):
+for n in range(0,startnr):
     list.append(Util().make_Tamagotchi())
 
 mayor = Mayorgotchi(list)
