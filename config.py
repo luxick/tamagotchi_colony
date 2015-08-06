@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 # The lenght of one game cycle in milliseconds
-ticklenght = 0.1
+ticklenght = 0.05
 # Number of Tamagotchis to be created at the start of the simulation
-startnr = 50
+startnr = 100
 # The amount of points a Tamagotchi loses per tick
 decayaspeed = 1
 # If the hunger stat falls below this level Tamagotchis can be fed
@@ -22,8 +22,8 @@ min_decay = 1
 max_decay = 3
 # These two define how long it takes a Tamagotchi to perform work (preparing food/washing someone/playing with someone)
 # The value is choosen randomly between these two. Obviously a lower number is better.
-min_workpower = 1
-max_workpower = 3
+min_workpower = 3
+max_workpower = 6
 # This defines the bounds of how much a Tamagotchi can recover when eating/sleeping/playing etc.
 min_recovery = 10
 max_recovery = 20
