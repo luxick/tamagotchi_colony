@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 # The lenght of one game cycle in milliseconds
-ticklenght = 0.05
+ticklenght = 0.005
 # Number of Tamagotchis to be created at the start of the simulation
-startnr = 50
+startnr = 100
 # The amount of points a Tamagotchi loses per tick
 decayaspeed = 1
 # If the hunger stat falls below this level Tamagotchis can be fed
