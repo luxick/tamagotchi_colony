@@ -27,8 +27,8 @@ while True:
     mayor.step()
     screen.addstr('Simulation running. Press [q] to exit.\n')
     screen.addstr('----------------------After '+str(ticks)+' ticks------------------------------\n')
-    #screen.addstr(mayor.give_status(show_pct))
-    screen.addstr(mayor.give_overview())
+    screen.addstr(mayor.give_status(show_pct))
+    #screen.addstr(mayor.give_overview())
     ticks += 1
 
     screen.clrtobot()

@@ -29,40 +29,6 @@ class Mayorgotchi:
                 result += n.status_abs()
         return result
 
-    def give_overview(self):
-        result = 'I am Mayorgotchi ' + self.name + '.\nThere are ' + str(len(self.mygotchis)) + ' Tamagotchis in my Village\nThere are ' + str(self.graveyard) + ' Tamagotchis in the graveyard.\nOccupation in my Village:\n'
-        tmp = self.get_status_list()
-        
-        result += 'Idle:{0:5} Eating:{1:5} Sleeping:{2:5} Bathing:{3:5} Playing:{4:5} Working:{5:5}\n'.format(str(len(tmp[0])), str(len(tmp[1])), str(len(tmp[2])), str(len(tmp[3])), str(len(tmp[4])), str(len(tmp[5])))
-
-        return result
-
-    def get_status_list(self):
-        # A list containing lists of Tamagotchis and thier statuses
-        # 0 = Idle
-        # 1 = Eating
-        # 2 = Sleeping
-        # 3 = Bathing
-        # 4 = Playing
-        # 5 = Working
-        result = [[] for x in xrange(6)]
-
-        for n in self.mygotchis:
-            if n.status is 'Idle':
-                result[0].append(n)
-            if n.status is 'Eating':
-                result[1].append(n)
-            if n.status is 'Sleeping':
-                result[2].append(n)
-            if n.status is 'Bathing':
-                result[3].append(n)
-            if n.status is 'Playing':
-                result[4].append(n)
-            if n.status is 'Working':
-                result[5].append(n)
-
-        return result
-
     def get_free(self):
         freegotchis = []
         for n in self.mygotchis:
@@ -82,8 +48,9 @@ class Mayorgotchi:
     def get_dirty(self):
         dirties = []
         for n in self.mygotchis:
-            if n.hygiene[0] <= washing_point:
-                dirties.append(n)
+            if n.status is 'Idle':
+                if n.hygiene[0] <= washing_point:
+                    dirties.append(n)
         if len(dirties) > 0:
             return dirties[random.randrange(0,len(dirties),1)]
         else:
@@ -91,10 +58,10 @@ class Mayorgotchi:
 
     def get_unhappy(self):
         unhappies = []
-        result = []
         for n in self.mygotchis:
-            if n.happiness[0] <= play_point:
-                unhappies.append(n)
+            if n.status is 'Idle':
+                if n.happiness[0] <= play_point:
+                    unhappies.append(n)
         if len(unhappies) > 0:
             return unhappies[random.randrange(0,len(unhappies), 1)]
         else:
@@ -120,6 +87,8 @@ class Mayorgotchi:
         for n in self.mygotchis:
             n.step()
         self.remove_corpses()
+
+
         self.order_feed()
         self.order_wash()
         self.order_play()
