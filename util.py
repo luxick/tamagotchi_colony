@@ -8,7 +8,8 @@ from config import *
 class Util:
 
     def make_Tamagotchi(self):
-        name = names.get_last_name()
+        # name = names.get_last_name()
+        name = 'Gotchi'
         hunger = random.randrange(min_stat,max_stat,1)
         happiness = random.randrange(min_stat,max_stat,1)
         hygiene = random.randrange(min_stat,max_stat,1)

@@ -9,6 +9,9 @@ import curses
 
 # Temporary test section
 ticks = 0
+kingdomview = True
+villagenr = 0
+percentage = True
 
 def make_list(number):
 	list = []
@@ -17,7 +20,7 @@ def make_list(number):
 	return list
 
 king = Kinggotchi()
-for n in range(0, 10):
+for n in range(0, 30):
 	king.add_village(Mayorgotchi(make_list(startnr)))
 
 stdscr = curses.initscr()
@@ -31,9 +34,15 @@ win = curses.newpad(16383, width)
 
 while True:
 	win.move(0,0)
-	win.addstr(0,0,'Simulation running. Press [q] to exit.\n')
-	win.addstr(1,0,'----------------------After '+str(ticks)+' ticks------------------------------\n')
-	win.addstr(3,0,king.show_kingdom())
+	win.addstr(0,0,'Tamagotchi Colony (alpha) - currently at tick '+str(ticks)+'.\n')
+
+	if kingdomview:
+		win.addstr(2,0,'[q]:exit [p]:pause [v]:switch between Kingdom/Village view\n')
+		win.addstr(4,0,king.show_kingdom())
+	else:
+		win.addstr(2,0,'[q]:exit [p]:pause [v]:switch between Kingdom/Village view [n/m]:previous/next Village\n')
+		win.addstr(4,0,king.myvillages[villagenr].give_status(percentage))
+
 	king.step()
 	ticks += 1
 	win.clrtoeol()
@@ -43,6 +52,17 @@ while True:
 	key = stdscr.getch()
 	if key == ord('q'):
 		break
+	elif key == ord('p'):
+		while True:
+			unpause_key =stdscr.getch()
+			if unpause_key == ord('p'):
+				break
+	elif key == ord('v'):
+		kingdomview = not kingdomview
+	elif key == ord('n'):
+		villagenr -= 1
+	elif key == ord('m'):
+		villagenr += 1
 	elif key < 0:
 	    time.sleep(ticklenght)
 
