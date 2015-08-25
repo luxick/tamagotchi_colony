@@ -69,27 +69,27 @@ class Tamagotchi:
                     self.power -= 1
 
     def step(self):
-            self.update_status()
+        self.update_status()
 
-            if self.status is 'Eating':
-                self.update_stat(self.hunger,True)
-            else:
-                self.update_stat(self.hunger,False)
+        if self.status is 'Eating':
+            self.update_stat(self.hunger,True)
+        else:
+            self.update_stat(self.hunger,False)
 
-            if self.status is 'Sleeping':
-                self.update_stat(self.sleep,True)
-            else:
-                self.update_stat(self.sleep,False)
+        if self.status is 'Sleeping':
+            self.update_stat(self.sleep,True)
+        else:
+            self.update_stat(self.sleep,False)
 
-            if self.status is 'Bathing':
-                self.update_stat(self.hygiene,True)
-            else:
-                self.update_stat(self.hygiene,False)
+        if self.status is 'Bathing':
+            self.update_stat(self.hygiene,True)
+        else:
+            self.update_stat(self.hygiene,False)
 
-            if self.status is 'Playing':
-                self.update_stat(self.happiness,True)
-            else:
-                self.update_stat(self.happiness,False)
+        if self.status is 'Playing':
+            self.update_stat(self.happiness,True)
+        else:
+            self.update_stat(self.happiness,False)
 
     def is_dead(self):
         if self.dead:
