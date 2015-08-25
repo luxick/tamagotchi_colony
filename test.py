@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from mayorgotchi import Mayorgotchi
 from kinggotchi import Kinggotchi
@@ -37,10 +38,10 @@ while True:
 	win.addstr(0,0,'Tamagotchi Colony (alpha) - currently at tick '+str(ticks)+'.\n')
 
 	if kingdomview:
-		win.addstr(2,0,'[q]:exit [p]:pause [v]:switch between Kingdom/Village view\n')
+		win.addstr(2,0,'[q]:Exit [p]:Pause [v]:Village View\n')
 		win.addstr(4,0,king.show_kingdom())
 	else:
-		win.addstr(2,0,'[q]:exit [p]:pause [v]:switch between Kingdom/Village view [n/m]:previous/next Village\n')
+		win.addstr(2,0,'[q]:Exit [p]:Pause [v]:Kingdom View [n/m]:Previous/Next Village\n')
 		win.addstr(4,0,king.myvillages[villagenr].give_status(percentage))
 
 	king.step()

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from tamagotchi import Tamagotchi
 import names
@@ -21,7 +22,7 @@ class Mayorgotchi:
                 self.mygotchis.remove(n)
 
     def give_status(self,show_pct):
-        result = 'I am Mayorgotchi ' + self.name + '.\nIn my Village '+str(self.graveyard)+' Tamagotchis died so far.\nThese are the '+str(len(self.mygotchis))+' Tamagotchis living in my Village:\n\n'
+        result = 'I am Mayorgotchi ' + self.name + '.\nIn my Village live '+str(len(self.mygotchis))+' Tamagotchis.\nIn my Village '+str(self.graveyard)+' Tamagotchis died so far.\n\n'
         for n in self.mygotchis:
             if show_pct:
                 result += n.status_pct()
@@ -30,10 +31,9 @@ class Mayorgotchi:
         return result
 
     def give_overview(self):
-        result = 'I am Mayorgotchi ' + self.name + '.\nThere are ' + str(len(self.mygotchis)) + ' Tamagotchis in my Village\nThere are ' + str(self.graveyard) + ' Tamagotchis in the graveyard.\nOccupation in my Village:\n'
-        tmp = self.get_status_list()
-        
-        result += 'Idle:{0:5} Eating:{1:5} Sleeping:{2:5} Bathing:{3:5} Playing:{4:5} Working:{5:5}\n'.format(str(len(tmp[0])), str(len(tmp[1])), str(len(tmp[2])), str(len(tmp[3])), str(len(tmp[4])), str(len(tmp[5])))
+        result = ''
+        tmp = self.get_status_list()        
+        result += 'Village of Mayor {0:10} Population:{1:5} Dead:{2:5} Idle:{3:5} Eating:{4:5} Sleeping:{5:5} Bathing:{6:5} Playing:{7:5} Working:{8:5}\n'.format(self.name,str(len(self.mygotchis)),str(self.graveyard),str(len(tmp[0])), str(len(tmp[1])), str(len(tmp[2])), str(len(tmp[3])), str(len(tmp[4])), str(len(tmp[5])))
 
         return result
     def get_status_list(self):

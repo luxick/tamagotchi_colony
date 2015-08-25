@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from config import *
 from mayorgotchi import Mayorgotchi
@@ -19,7 +20,7 @@ class Kinggotchi:
 		result = 'I am Kinggotchi '+str(self.name)+'.\nIn my Kingdom live '+str(self.all_tamagotchis())+' Tamagotichs.\nIn my Kingdom '+str(self.all_dead())+' Tamagotchis have died so far.\n\nThese are the '+str(len(self.myvillages))+' Villages in my Kingdom:\n'
 
 		for n in self.myvillages:
-			result += '-------------------------------------------------------------------------------\n'
+			# result += '-----------------------------------------------------------------------------------------\n'
 			result += n.give_overview()
 
 		return result

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 # The lenght of one game cycle in milliseconds
 ticklenght = 0.005
