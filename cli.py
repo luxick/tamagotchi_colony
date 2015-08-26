@@ -30,7 +30,6 @@ class cursesUI:
     def build_screen(self, king, ticks):
 
         height, width = self.stdscr.getmaxyx()
-        self.win.move(0, 0)
         self.win.addstr(0, 0, 'Tamagotchi Colony (alpha) - currently at tick '+str(ticks)+'.')
 
         if self.kingdomview:

@@ -11,24 +11,18 @@ import curses
 
 # Temporary test section
 ticks = 0
-
-def make_list(number):
-    tmp = []
-    for n in range(0,number):
-        tmp.append(Util().make_Tamagotchi())
-    return tmp
-
 king = Kinggotchi()
-for n in range(0, 30):
-    king.add_village(Mayorgotchi(make_list(startnr)))
-
 ui = cursesUI(True)
 
+for n in range(0, 30):
+    king.add_village(Mayorgotchi(Util().make_list_of_Tamagotchis(startnr)))
+
 while True:
-    ui.build_screen(king,ticks)
+    ui.build_screen(king, ticks)
 
     if not ui.paused:
         king.step()
         ticks += 1
     if not ui.running:
         break
+        

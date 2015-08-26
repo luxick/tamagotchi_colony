@@ -20,3 +20,9 @@ class Util:
         recovery = random.randrange(min_recovery, max_recovery, 1)
 
         return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recovery)
+
+    def make_list_of_Tamagotchis(self, number):
+        tmp = []
+        for n in range(0,number):
+            tmp.append(self.make_Tamagotchi())
+        return tmp

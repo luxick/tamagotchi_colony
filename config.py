@@ -28,5 +28,5 @@ max_workpower = 6
 # This defines the bounds of how much a Tamagotchi can recover when eating/sleeping/playing etc.
 min_recovery = 10
 max_recovery = 20
-
+# Define if simulation should be started paused or running
 start_paused = False
