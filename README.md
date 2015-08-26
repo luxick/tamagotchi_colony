@@ -10,10 +10,10 @@ Configure the variables in the  ``` config.py ``` file to change the circumstanc
 - ~~Automatically create Tamagotchis with random stats~~
 - ~~Automatic decay of Tamagotchis~~
 - ~~Automatic Feeding/Bathing/Playing/Sleeping~~
-- Different status views
+- ~~Different status views~~
 - Tamagotchi reproduction
 - Change variables at runtime
 - Measurement of Tamagotchi/Town/Colony overall health
-- Multiple Towns
+- ~~Multiple Towns~~
 - Exchange of Tamagotchis between Towns
 - Graphical User Interface
