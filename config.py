@@ -4,7 +4,7 @@
 # The lenght of one game cycle in milliseconds
 ticklenght = 0.005
 # Number of Tamagotchis to be created at the start of the simulation
-startnr = 100
+startnr = 60
 # The amount of points a Tamagotchi loses per tick
 decayaspeed = 1
 # If the hunger stat falls below this level Tamagotchis can be fed
@@ -28,3 +28,5 @@ max_workpower = 6
 # This defines the bounds of how much a Tamagotchi can recover when eating/sleeping/playing etc.
 min_recovery = 10
 max_recovery = 20
+
+start_paused = False

@@ -1,19 +1,16 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+# coding=UTF-8
 
 from mayorgotchi import Mayorgotchi
 from kinggotchi import Kinggotchi
 from util import Util
 from config import *
+from cli import *
 import time
 import curses
 
 # Temporary test section
 ticks = 0
-kingdomview = True
-villagenr = 0
-percentage = True
-paused = False
 
 def make_list(number):
     tmp = []
@@ -25,46 +22,13 @@ king = Kinggotchi()
 for n in range(0, 30):
     king.add_village(Mayorgotchi(make_list(startnr)))
 
-stdscr = curses.initscr()
-curses.noecho()
-curses.curs_set(0)
-stdscr.keypad(1)
-stdscr.nodelay(1)
-
-height, width = stdscr.getmaxyx()
-win = curses.newpad(16383, width)
+ui = cursesUI(True)
 
 while True:
-    height, width = stdscr.getmaxyx()
-    win.move(0, 0)
-    win.addstr(0, 0, 'Tamagotchi Colony (alpha) - currently at tick '+str(ticks)+'.\n')
+    ui.build_screen(king,ticks)
 
-    if kingdomview:
-        win.addstr(2, 0, '[q]:Exit [p]:Pause [v]:Village View\n')
-        win.addstr(4, 0, king.show_kingdom())
-    else:
-        win.addstr(2, 0, '[q]:Exit [p]:Pause [v]:Kingdom View [n/m]:Previous/Next Village\n')
-        win.addstr(4, 0, king.myvillages[villagenr].give_status(percentage))
-
-    if not paused:
+    if not ui.paused:
         king.step()
         ticks += 1
-    win.clrtoeol()
-    win.clrtobot()
-    win.refresh(0, 0, 0, 0, height-1, width-1)
-
-    key = stdscr.getch()
-    if key == ord('q'):
+    if not ui.running:
         break
-    elif key == ord('p'):
-        paused = not paused
-    elif key == ord('v'):
-        kingdomview = not kingdomview
-    elif key == ord('n'):
-        villagenr -= 1
-    elif key == ord('m'):
-        villagenr += 1
-    elif key < 0:
-        time.sleep(ticklenght)
-
-curses.endwin()
