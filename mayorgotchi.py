@@ -33,7 +33,7 @@ class Mayorgotchi:
     def give_overview(self):
         result = ''
         tmp = self.get_status_list()        
-        result += 'Village of Mayor {0:10} Population:{1:5} Dead:{2:5} Idle:{3:5} Eating:{4:5} Sleeping:{5:5} Bathing:{6:5} Playing:{7:5} Working:{8:5}\n'.format(self.name,str(len(self.mygotchis)),str(self.graveyard),str(len(tmp[0])), str(len(tmp[1])), str(len(tmp[2])), str(len(tmp[3])), str(len(tmp[4])), str(len(tmp[5])))
+        result += 'Village of Mayor {0:13} Population:{1:5} Dead:{2:5} Idle:{3:5} Eating:{4:5} Sleeping:{5:5} Bathing:{6:5} Playing:{7:5} Working:{8:5}\n'.format(self.name,str(len(self.mygotchis)),str(self.graveyard),str(len(tmp[0])), str(len(tmp[1])), str(len(tmp[2])), str(len(tmp[3])), str(len(tmp[4])), str(len(tmp[5])))
 
         return result
     def get_status_list(self):
@@ -68,7 +68,7 @@ class Mayorgotchi:
             if n.status is 'Idle':
                 freegotchis.append(n)
         if len(freegotchis) > 0:
-            return freegotchis[random.randrange(0,len(freegotchis),1)]
+            return freegotchis[random.randrange(0, len(freegotchis), 1)]
         else:
             return None
 
