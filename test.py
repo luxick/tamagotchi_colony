@@ -14,7 +14,7 @@ ticks = 0
 king = Kinggotchi()
 ui = cursesUI(True)
 
-for n in range(0, 30):
+for n in range(0, 50):
     king.add_village(Mayorgotchi(Util().make_list_of_Tamagotchis(startnr)))
 
 while True:

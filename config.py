@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # The lenght of one game cycle in milliseconds
-ticklenght = 0.005
+ticklenght = 0.001
 # Number of Tamagotchis to be created at the start of the simulation
 startnr = 60
 # The amount of points a Tamagotchi loses per tick
@@ -29,4 +29,5 @@ max_workpower = 6
 min_recovery = 10
 max_recovery = 20
 # Define if simulation should be started paused or running
-start_paused = False
+start_paused = True
+

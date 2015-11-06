@@ -44,7 +44,7 @@ class Mayorgotchi:
         # 3 = Bathing
         # 4 = Playing
         # 5 = Working
-        result = [[] for x in xrange(6)]
+        result = [[] for x in range(6)]
 
         for n in self.mygotchis:
             if n.status is 'Idle':
