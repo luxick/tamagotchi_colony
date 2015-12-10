@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # coding=UTF-8
 
+from mayorgotchi import Mayorgotchi
+from kinggotchi import Kinggotchi
 from config import *
 import curses
 import time
@@ -10,8 +12,10 @@ class cursesUI:
     villagenr = 0
     percentage = True
     running = True
-
-    def __init__(self,start_paused):
+    ticks = 0
+    king = Kinggotchi()
+    
+    def __init__(self):
         self.kingdomview = True
         self.villagenr = 0
         self.percentage = True
@@ -26,6 +30,15 @@ class cursesUI:
 
         height, width = self.stdscr.getmaxyx()
         self.win = curses.newpad(16383, width)
+        
+        self.king.createKingdom(50)
+
+        while self.running:
+            self.build_screen(self.king, self.ticks)
+            
+            if not self.paused:
+                self.king.step()
+                self.ticks += 1
 
     def build_screen(self, king, ticks):
 

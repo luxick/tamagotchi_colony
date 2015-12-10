@@ -5,8 +5,6 @@
 ticklenght = 0.001
 # Number of Tamagotchis to be created at the start of the simulation
 startnr = 60
-# The amount of points a Tamagotchi loses per tick
-decayaspeed = 1
 # If the hunger stat falls below this level Tamagotchis can be fed
 feeding_point = 50
 # If the hygiene stat falls below this level Tamagotchis can be washed

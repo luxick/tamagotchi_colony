@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from config import *
+from mayorgotchi import Mayorgotchi
+from util import Util
 import names
+import itertools
 
 class Kinggotchi:
     myvillages = []
@@ -37,3 +40,7 @@ class Kinggotchi:
         for n in self.myvillages:
             result += n.graveyard
         return result
+    
+    def createKingdom(self, startvillages):
+        for _ in itertools.repeat(None, startvillages): 
+            self.add_village(Mayorgotchi(Util().make_list_of_Tamagotchis(startnr)))
