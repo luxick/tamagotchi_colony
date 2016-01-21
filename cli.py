@@ -31,7 +31,7 @@ class cursesUI:
         height, width = self.stdscr.getmaxyx()
         self.win = curses.newpad(16383, width)
         
-        self.king.createKingdom(50)
+        self.king.createKingdom(startNrVillages)
 
         while self.running:
             self.build_screen(self.king, self.ticks)

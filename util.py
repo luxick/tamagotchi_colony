@@ -10,14 +10,14 @@ class Util:
 
     def make_Tamagotchi(self):
         name = self.generateName()
-        hunger = random.randrange(min_stat,max_stat,1)
-        happiness = random.randrange(min_stat,max_stat,1)
-        hygiene = random.randrange(min_stat,max_stat,1)
-        sleep = random.randrange(min_stat,max_stat,1)
-        decayspeed = random.randrange(min_decay,max_decay,1)
-        potential = random.randrange(min_workpower, max_workpower,1)
-        recovery = random.randrange(min_recovery, max_recovery, 1)
-        lifetime = random.randrange(min_life, max_life, 1)
+        hunger = random.randrange(statrange[0],statrange[1],1)
+        happiness = random.randrange(statrange[0],statrange[1],1)
+        hygiene = random.randrange(statrange[0],statrange[1],1)
+        sleep = random.randrange(statrange[0],statrange[1],1)
+        decayspeed = random.randrange(decay[0],decay[1],1)
+        potential = random.randrange(workpower[0], workpower[1],1)
+        recovery = random.randrange(recovery[0], recovery[1], 1)
+        lifetime = random.randrange(life[0], life[1], 1)
 
         return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recovery,lifetime)
 
