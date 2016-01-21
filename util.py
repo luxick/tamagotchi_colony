@@ -18,8 +18,9 @@ class Util:
         decayspeed = random.randrange(min_decay,max_decay,1)
         potential = random.randrange(min_workpower, max_workpower,1)
         recovery = random.randrange(min_recovery, max_recovery, 1)
+        lifetime = random.randrange(min_life, max_life, 1)
 
-        return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recovery)
+        return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recovery,lifetime)
 
     def make_list_of_Tamagotchis(self, number):
         tmp = []

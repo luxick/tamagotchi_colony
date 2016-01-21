@@ -26,6 +26,9 @@ max_workpower = 6
 # This defines the bounds of how much a Tamagotchi can recover when eating/sleeping/playing etc.
 min_recovery = 10
 max_recovery = 20
+# Defines the range in witch the lifetime of Tamagotichs will be created in ticks
+min_life = 2000
+max_life = 3000
 # Define if simulation should be started paused or running
 start_paused = True
 

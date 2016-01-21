@@ -44,3 +44,4 @@ class Kinggotchi:
     def createKingdom(self, startvillages):
         for _ in itertools.repeat(None, startvillages): 
             self.add_village(Mayorgotchi(Util().make_list_of_Tamagotchis(startnr)))
+

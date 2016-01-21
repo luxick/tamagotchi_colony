@@ -66,13 +66,18 @@ class cursesUI:
         elif key == ord('p'):
             self.paused = not self.paused
         elif key == ord('v'):
+            self.win.move(0, 0)
+            self.win.clrtobot()
             self.kingdomview = not self.kingdomview
         elif key == ord('n'):
-            self.villagenr -= 1
+            if not self.kingdomview:
+                self.villagenr -= 1
         elif key == ord('m'):
-            self.villagenr += 1
+            if not self.kingdomview:
+                self.villagenr += 1
         elif key == ord('s'):
-            self.percentage = not self.percentage
+            if not self.kingdomview:
+                self.percentage = not self.percentage
         elif key < 0:
             time.sleep(ticklenght)
         if not self.running:

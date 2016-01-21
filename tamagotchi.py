@@ -13,8 +13,9 @@ class Tamagotchi:
     potential   = 0
     power       = 0
     recovery    = 0
+    lifetime    = 0
 
-    def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed, potential,recovery):
+    def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed, potential, recovery, lifetime):
         self.name       = name
         self.hunger     = [hunger, hunger]
         self.happiness  = [happiness, happiness]
@@ -26,6 +27,7 @@ class Tamagotchi:
         self.potential  = potential
         self.power      = potential
         self.recovery   = recovery
+        self.lifetime   = lifetime 
 
     def feed_other(self, tamagotchi):
         self.status = 'Working'
@@ -59,6 +61,9 @@ class Tamagotchi:
             if self.hunger[0] <= 0:
                 self.status = 'Dead'
                 self.dead = True
+            if self.lifetime <= 0:
+                self.status = 'Dead'
+                self.dead = True
             if self.sleep[0] <= 0:
                 self.status = 'Sleeping'
             if self.status is 'Working':
@@ -70,6 +75,7 @@ class Tamagotchi:
 
     def step(self):
         self.update_status()
+        self.lifetime -= 1
 
         if self.status is 'Eating':
             self.update_stat(self.hunger,True)
@@ -101,7 +107,14 @@ class Tamagotchi:
         return 100 * float(part)/float(whole)
 
     def status_abs(self):
-        return '{0:15} {1:10} Hunger:{2:10} Happiness:{3:10} Hygiene:{4:10} Sleep:{5:10}\n'.format(self.name,self.status,str(self.hunger[0])+'/'+str(self.hunger[1]),str(self.happiness[0])+'/'+str(self.happiness[1]),str(self.hygiene[0])+'/'+str(self.hygiene[1]),str(self.sleep[0])+'/'+str(self.sleep[1]))
+        rtn = '{0:15}'.format(self.name)
+        rtn += '{0:10}'.format(self.status)
+        rtn += 'Hunger: {0:10}'.format(str(self.hunger[0]) + '/' + str(self.hunger[1]))
+        rtn += 'Happiness: {0:10}'.format(str(self.happiness[0]) + '/' + str(self.happiness[1]))
+        rtn += 'Hygiene: {0:10}'.format(str(self.hygiene[0]) + '/' + str(self.hygiene[1]))
+        rtn += 'Sleep: {0:10}'.format(str(self.sleep[0]) + '/' + str(self.sleep[1]))
+        rtn += '\n'
+        return rtn
 
     def status_pct(self):
         hunger_pct = '%.0f%%' %(self.percentage(self.hunger[0], self.hunger[1]))
@@ -109,4 +122,11 @@ class Tamagotchi:
         hygiene_pct = '%.0f%%' %self.percentage(self.hygiene[0], self.hygiene[1])
         sleep_pct = '%.0f%%' %self.percentage(self.sleep[0], self.sleep[1])
 
-        return '{0:20} {1:10} Hunger:{2:5} Happiness:{3:5} Hygiene:{4:5} Sleep:{5:5}\n'.format(self.name,self.status,hunger_pct,happiness_pct,hygiene_pct,sleep_pct)
+        rtn = '{0:20}'.format(self.name)
+        rtn += '{0:10}'.format(self.status)
+        rtn += 'Hunger: {0:5}'.format(hunger_pct)
+        rtn += 'Happiness: {0:5}'.format(happiness_pct)
+        rtn += 'Hygiene: {0:5}'.format(hygiene_pct)
+        rtn += 'Sleep: {0:5}'.format(sleep_pct)
+        rtn += '\n'
+        return rtn

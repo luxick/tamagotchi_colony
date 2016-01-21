@@ -1,0 +1,23 @@
+# Blank lines and lines starting with # are ignored
+da
+ka
+ta
+ra
+cus
+iss
+aba
+ton
+ar
+at
+cu
+da
+ta
+ab
+ba
+meno
+tor
+wir
+wen
+ein
+dev
+ken
