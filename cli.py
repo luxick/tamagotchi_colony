@@ -83,4 +83,4 @@ class cursesUI:
         if not self.running:
             curses.endwin()
 
-
+ui = cursesUI()

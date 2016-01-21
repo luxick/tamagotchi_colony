@@ -4,7 +4,6 @@
 from config import *
 from mayorgotchi import Mayorgotchi
 from util import Util
-import names
 import itertools
 
 class Kinggotchi:
@@ -12,7 +11,7 @@ class Kinggotchi:
     name = ''
 
     def __init__(self):
-        self.name = names.get_last_name()
+        self.name = util.generateName()
 
     def add_village(self, mayor):
         self.myvillages.append(mayor)

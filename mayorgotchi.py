@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from tamagotchi import Tamagotchi
-import names
 import random
 from config import *
 
@@ -13,7 +12,7 @@ class Mayorgotchi:
 
     def __init__(self, list_of_tamagotchis):
         self.mygotchis = list_of_tamagotchis
-        self.name = names.get_last_name()
+        self.name = util.generateName()
 
     def remove_corpses(self):
         for n in self.mygotchis:
