@@ -16,10 +16,10 @@ class Util:
         sleep = random.randrange(statrange[0],statrange[1],1)
         decayspeed = random.randrange(decay[0],decay[1],1)
         potential = random.randrange(workpower[0], workpower[1],1)
-        recovery = random.randrange(recovery[0], recovery[1], 1)
+        recoveryspeed = random.randrange(recovery[0], recovery[1], 1)
         lifetime = random.randrange(life[0], life[1], 1)
 
-        return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recovery,lifetime)
+        return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recoveryspeed,lifetime)
 
     def make_list_of_Tamagotchis(self, number):
         tmp = []

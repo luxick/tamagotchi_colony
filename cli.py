@@ -47,12 +47,12 @@ class cursesUI:
 
         if self.kingdomview:
             self.win.addstr(1, 0, '-----------------------------------')
-            self.win.addstr(2, 0, '[q]Exit [p]Pause [v]Village View')
+            self.win.addstr(2, 0, '[q]uit [p]ause [s]witch view')
             self.win.addstr(3, 0, '-----------------------------------')
             self.win.addstr(5, 0, king.show_kingdom())
         else:
             self.win.addstr(1, 0, '------------------------------------------------------------------')
-            self.win.addstr(2, 0, '[q]Exit [p]Pause [v]Kingdom View [n/m]Previous/Next [s]Percentage')
+            self.win.addstr(2, 0, '[q]uit [p]ause [s]witch view [b]ack [n]ext [a]bsolute numbers')
             self.win.addstr(3, 0, '------------------------------------------------------------------')
             self.win.addstr(5, 0, king.myvillages[self.villagenr].give_status(self.percentage))
 
@@ -65,17 +65,17 @@ class cursesUI:
             self.running = False
         elif key == ord('p'):
             self.paused = not self.paused
-        elif key == ord('v'):
+        elif key == ord('s'):
             self.win.move(0, 0)
             self.win.clrtobot()
             self.kingdomview = not self.kingdomview
         elif key == ord('n'):
             if not self.kingdomview:
-                self.villagenr -= 1
-        elif key == ord('m'):
-            if not self.kingdomview:
                 self.villagenr += 1
-        elif key == ord('s'):
+        elif key == ord('b'):
+            if not self.kingdomview:
+                self.villagenr -= 1
+        elif key == ord('a'):
             if not self.kingdomview:
                 self.percentage = not self.percentage
         elif key < 0:
