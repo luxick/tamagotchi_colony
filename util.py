@@ -4,6 +4,7 @@
 from tamagotchi import Tamagotchi
 import random
 from config import *
+import os
 
 class Util:
 
@@ -26,23 +27,15 @@ class Util:
             tmp.append(self.make_Tamagotchi())
         return tmp
 
-    def generateName(self):
+    @staticmethod
+    def generateName():
         # Load syllables from file
         min_syllable_count = 0
         max_syllable_count = 3
 
-        firstsyllables = []
-        with open("firstsyllable.txt") as firstsyllable_file:
-            for line in firstsyllable_file:
-                line = line.strip()
-                if len(line) == 0:
-                    continue
-                if line[0] == "#":
-                    continue
-                firstsyllables.append(line)
-
+        __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
         syllables = []
-        with open("syllables.txt") as syllable_file:
+        with open(os.path.join(__location__, 'syllables.txt')) as syllable_file:
             for line in syllable_file:
                 line = line.strip()
                 if len(line) == 0:
@@ -53,7 +46,7 @@ class Util:
 
         # Generate the name
         name = ""
-        name += firstsyllables[random.randint(0, len(firstsyllables) - 1)]
+        name += syllables[random.randint(0, len(syllables) - 1)].capitalize()
         for i in range(0, random.randint(int(min_syllable_count), int(max_syllable_count))):
             name += syllables[random.randint(0, len(syllables) - 1)]
         return name

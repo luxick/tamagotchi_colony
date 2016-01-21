@@ -11,7 +11,7 @@ class Kinggotchi:
     name = ''
 
     def __init__(self):
-        self.name = util.generateName()
+        self.name = Util.generateName()
 
     def add_village(self, mayor):
         self.myvillages.append(mayor)

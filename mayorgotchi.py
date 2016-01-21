@@ -4,6 +4,7 @@
 from tamagotchi import Tamagotchi
 import random
 from config import *
+from util import Util
 
 class Mayorgotchi:
     mygotchis = []
@@ -12,7 +13,7 @@ class Mayorgotchi:
 
     def __init__(self, list_of_tamagotchis):
         self.mygotchis = list_of_tamagotchis
-        self.name = util.generateName()
+        self.name = Util.generateName()
 
     def remove_corpses(self):
         for n in self.mygotchis:
