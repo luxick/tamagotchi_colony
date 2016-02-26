@@ -37,7 +37,7 @@ class Mayorgotchi:
 
         return result
     def get_status_list(self):
-        # A list containing lists of Tamagotchis and thier statuses
+        # A list containing lists of Tamagotchis and their statuses
         # 0 = Idle
         # 1 = Eating
         # 2 = Sleeping

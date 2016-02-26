@@ -46,14 +46,14 @@ class cursesUI:
         self.win.addstr(0, 0, 'Tamagotchi Colony (alpha) - currently at tick '+str(ticks)+'.')
 
         if self.kingdomview:
-            self.win.addstr(1, 0, '-----------------------------------')
-            self.win.addstr(2, 0, '[q]uit [p]ause [s]witch view')
-            self.win.addstr(3, 0, '-----------------------------------')
+            self.win.addstr(1, 0, '-----------------------------')
+            self.win.addstr(2, 0, '[Q]uit [P]ause [S]witch view')
+            self.win.addstr(3, 0, '-----------------------------')
             self.win.addstr(5, 0, king.show_kingdom())
         else:
-            self.win.addstr(1, 0, '------------------------------------------------------------------')
-            self.win.addstr(2, 0, '[q]uit [p]ause [s]witch view [b]ack [n]ext [a]bsolute numbers')
-            self.win.addstr(3, 0, '------------------------------------------------------------------')
+            self.win.addstr(1, 0, '--------------------------------------------------------------')
+            self.win.addstr(2, 0, '[Q]uit [P]ause [S]witch view [B]ack [N]ext [A]bsolute numbers')
+            self.win.addstr(3, 0, '--------------------------------------------------------------')
             self.win.addstr(5, 0, king.myvillages[self.villagenr].give_status(self.percentage))
 
         self.win.clrtoeol()

@@ -25,3 +25,5 @@ ir
 ne
 he
 mu
+ke
+una
