@@ -5,9 +5,11 @@ from tamagotchi import Tamagotchi
 import random
 from config import *
 from util import Util
+from egg import Egg
 
 class Mayorgotchi:
     mygotchis = []
+    myeggs = []
     name = ''
     graveyard = 0
 
@@ -22,7 +24,10 @@ class Mayorgotchi:
                 self.mygotchis.remove(n)
 
     def give_status(self,show_pct):
-        result = 'I am Mayorgotchi ' + self.name + '.\nIn my Village live '+str(len(self.mygotchis))+' Tamagotchis.\nIn my Village '+str(self.graveyard)+' Tamagotchis died so far.\n\n'
+        result = "Town: " + self.name + "\n"
+        result += "Population: " + str(len(self.mygotchis)) + " "
+        result += "Graveyard: " + str(self.graveyard) + " "
+        result += "Eggs: " + str(len(self.myeggs)) + "\n\n"
         for n in self.mygotchis:
             if show_pct:
                 result += n.status_pct()
@@ -120,8 +125,22 @@ class Mayorgotchi:
         for n in self.mygotchis:
             n.step()
         self.remove_corpses()
-
+        self.checkCildBirth()
 
         self.order_feed()
         self.order_wash()
         self.order_play()
+
+    def addToVillage(self, new):
+        if isinstance(new, Egg):
+            self.myeggs.append(new)
+        elif isinstance(new, Tamagotchi):
+            self.mygotchis.append(new)
+
+    def checkCildBirth(self):
+        for n in self.mygotchis:
+            if n.fertility[0] == True:
+                self.addToVillage(Egg())
+
+
+        

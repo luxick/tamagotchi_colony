@@ -14,6 +14,7 @@ class Tamagotchi:
     power       = 0
     recovery    = 0
     lifetime    = 0
+    fertility   = [True, 0]
 
     def __init__(self, name, hunger, happiness, hygiene, sleep, decayspeed, potential, recovery, lifetime):
         self.name       = name
@@ -130,3 +131,6 @@ class Tamagotchi:
         rtn += 'Sleep: {0:5}'.format(sleep_pct)
         rtn += '\n'
         return rtn
+
+    def checkFertility(self):
+        return True

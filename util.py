@@ -7,7 +7,6 @@ from config import *
 import os
 
 class Util:
-
     def make_Tamagotchi(self):
         name = self.generateName()
         hunger = random.randrange(statrange[0],statrange[1],1)
