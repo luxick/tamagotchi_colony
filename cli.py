@@ -20,7 +20,7 @@ class cursesUI:
         self.villagenr = 0
         self.percentage = True
         self.running = True
-        self.paused = start_paused
+        self.paused = START_PAUSED
 
         self.stdscr = curses.initscr()
         curses.noecho()
@@ -31,7 +31,7 @@ class cursesUI:
         height, width = self.stdscr.getmaxyx()
         self.win = curses.newpad(16383, width)
         
-        self.king.createKingdom(startNrVillages)
+        self.king.createKingdom(STARTNR_VILLAGES)
 
         while self.running:
             self.build_screen(self.king, self.ticks)
@@ -79,7 +79,7 @@ class cursesUI:
             if not self.kingdomview:
                 self.percentage = not self.percentage
         elif key < 0:
-            time.sleep(ticklenght)
+            time.sleep(TICKLENGHT)
         if not self.running:
             curses.endwin()
 

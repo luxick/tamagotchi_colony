@@ -23,13 +23,13 @@ class Mayorgotchi:
                 self.graveyard += 1
                 self.mygotchis.remove(n)
 
-    def give_status(self,show_pct):
+    def give_status(self,SHOW_PTC):
         result = "Town: " + self.name + "\n"
         result += "Population: " + str(len(self.mygotchis)) + " "
         result += "Graveyard: " + str(self.graveyard) + " "
         result += "Eggs: " + str(len(self.myeggs)) + "\n\n"
         for n in self.mygotchis:
-            if show_pct:
+            if SHOW_PTC:
                 result += n.status_pct()
             else:
                 result += n.status_abs()

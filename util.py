@@ -9,16 +9,17 @@ import os
 class Util:
     def make_Tamagotchi(self):
         name = self.generateName()
-        hunger = random.randrange(statrange[0],statrange[1],1)
-        happiness = random.randrange(statrange[0],statrange[1],1)
-        hygiene = random.randrange(statrange[0],statrange[1],1)
-        sleep = random.randrange(statrange[0],statrange[1],1)
-        decayspeed = random.randrange(decay[0],decay[1],1)
-        potential = random.randrange(workpower[0], workpower[1],1)
-        recoveryspeed = random.randrange(recovery[0], recovery[1], 1)
-        lifetime = random.randrange(life[0], life[1], 1)
+        hunger = random.randrange(STATRANGE[0],STATRANGE[1],1)
+        happiness = random.randrange(STATRANGE[0],STATRANGE[1],1)
+        hygiene = random.randrange(STATRANGE[0],STATRANGE[1],1)
+        sleep = random.randrange(STATRANGE[0],STATRANGE[1],1)
+        decayspeed = random.randrange(DECAY[0],DECAY[1],1)
+        potential = random.randrange(WORKPOWER[0], WORKPOWER[1],1)
+        recoveryspeed = random.randrange(RECOVERY[0], RECOVERY[1], 1)
+        lifetime = random.randrange(LIFE[0], LIFE[1], 1)
 
-        return Tamagotchi(name,hunger,happiness,hygiene,sleep,decayspeed,potential,recoveryspeed,lifetime)
+        return Tamagotchi(name, hunger, happiness, hygiene, sleep, decayspeed, 
+            potential, recoveryspeed, lifetime)
 
     def make_list_of_Tamagotchis(self, number):
         tmp = []
